@@ -1,0 +1,61 @@
+# ChatGPT Data Extractor & RAG Pipeline
+
+A local-first tool to ingest, store, and interact with your ChatGPT export data using RAG (Retrieval Augmented Generation).
+
+## Features
+
+- **Data Ingestion**: Parses ChatGPT `conversations.json` or `chat.html` exports.
+- **Structured Storage**: Stores conversations in PostgreSQL.
+- **Vector Search**: Uses `pgvector` for semantic search over conversation history.
+- **Local RAG**: Runs entirely locally using Ollama (LLM) and HuggingFace (Embeddings), with support for external APIs.
+- **REPL Interface**: Interactive command-line interface for chatting with your data.
+
+## Prerequisites
+
+- **Docker & Docker Compose**: For running the database.
+- **Python 3.10+**: For running the application.
+- **Ollama**: For local LLM inference (optional if using OpenAI API).
+
+## Setup
+
+1.  **Clone the repository**:
+    ```bash
+    git clone <repo-url>
+    cd chatgpt-data-extractor
+    ```
+
+2.  **Start the Database**:
+    ```bash
+    docker-compose up -d
+    ```
+
+3.  **Create Virtual Environment**:
+    ```bash
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
+    ```
+
+4.  **Configuration**:
+    Copy `.env.example` to `.env` and configure your settings (DB URL, Model names, API keys).
+
+## Usage
+
+### Ingest Data
+Place your unzipped ChatGPT export in `source-data/` (or specify path).
+
+```bash
+python main.py ingest --input source-data
+```
+
+### Chat (REPL)
+Start the interactive chat session.
+
+```bash
+python main.py chat
+```
+
+## Architecture
+
+See [docs/architecture](docs/architecture) for details.
+- [ADR 001: Technology Stack](docs/architecture/ADR-001-tech-stack.md)

@@ -1,0 +1,9 @@
+llama-index
+llama-index-vector-stores-postgres
+llama-index-embeddings-huggingface
+llama-index-llms-ollama
+psycopg2-binary
+python-dotenv
+rich
+sqlalchemy
+asyncpg
