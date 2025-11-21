@@ -42,13 +42,24 @@ A local-first tool to ingest, store, and interact with your ChatGPT export data 
     cp .env.example .env
     ```
     
-    Edit `.env` to set your preferred LLM model:
+    **For Anthropic Claude (Recommended for speed):**
     ```bash
-    LLM_MODEL=llama3.2:3b-instruct-q4_K_S  # Recommended for performance
+    python setup_anthropic.py YOUR_ANTHROPIC_API_KEY
+    ```
+    
+    Or manually edit `.env`:
+    ```bash
+    LLM_PROVIDER=anthropic
+    LLM_MODEL=claude-haiku-4-5  # Fast and cost-effective
+    ANTHROPIC_API_KEY=your-key-here
+    ```
+    
+    **For local Ollama models:**
+    ```bash
+    LLM_PROVIDER=ollama
+    LLM_MODEL=tinyllama:latest  # Fastest local model
     # or
-    LLM_MODEL=tinyllama:latest  # For quick testing
-    # or
-    LLM_MODEL=llama3.1:8b  # For better quality (slower)
+    LLM_MODEL=llama3.1:8b  # Better quality (slower)
     ```
 
 ## Usage
