@@ -88,7 +88,7 @@ python verify_retrieval.py
 ```
 
 ### Chat (REPL)
-**Note:** Requires Ollama running with a model downloaded (e.g., `ollama pull llama3`)
+Start the interactive chat session. The system will use the provider configured in your `.env` file (Anthropic or Ollama).
 
 ```bash
 python main.py chat
