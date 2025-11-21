@@ -37,7 +37,19 @@ A local-first tool to ingest, store, and interact with your ChatGPT export data 
     ```
 
 4.  **Configuration**:
-    Copy `.env.example` to `.env` and configure your settings (DB URL, Model names, API keys).
+    Copy `.env.example` to `.env` and configure your settings:
+    ```bash
+    cp .env.example .env
+    ```
+    
+    Edit `.env` to set your preferred LLM model:
+    ```bash
+    LLM_MODEL=llama3.2:3b-instruct-q4_K_S  # Recommended for performance
+    # or
+    LLM_MODEL=tinyllama:latest  # For quick testing
+    # or
+    LLM_MODEL=llama3.1:8b  # For better quality (slower)
+    ```
 
 ## Usage
 

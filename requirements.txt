@@ -7,3 +7,4 @@ python-dotenv
 rich
 sqlalchemy
 asyncpg
+llama-index-llms-anthropic

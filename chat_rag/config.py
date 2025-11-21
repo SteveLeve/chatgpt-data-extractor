@@ -15,6 +15,10 @@ DATABASE_URL = os.getenv(
     "postgresql+asyncpg://postgres:password@localhost:5432/chatgpt_rag"
 )
 
-# Models
-LLM_MODEL = os.getenv("LLM_MODEL", "llama3")
+# LLM Configuration
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "ollama")  # "ollama" or "anthropic"
+LLM_MODEL = os.getenv("LLM_MODEL", "tinyllama:latest")
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+
+# Embeddings
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3")
