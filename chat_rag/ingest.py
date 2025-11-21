@@ -5,7 +5,8 @@ import html as html_mod
 import re
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
-from llama_index.core import Document, VectorStoreIndex
+from llama_index.core import Document, VectorStoreIndex, Settings
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from chat_rag.storage import get_storage_context
 from chat_rag.config import EMBEDDING_MODEL
 
@@ -59,34 +60,50 @@ def load_conversations(input_dir: Path) -> List[Dict[str, Any]]:
         return _extract_json_from_html(html_path)
     raise FileNotFoundError("No conversations found in input directory")
 
-def ingest_data(input_dir: Path):
+def ingest_data(input_dir: Path, limit: Optional[int] = None, batch_size: int = 10):
     conversations = load_conversations(input_dir)
-    documents = []
     
-    print(f"Found {len(conversations)} conversations. Processing...")
+    if limit:
+        conversations = conversations[:limit]
+        print(f"Limiting to {limit} conversations.")
     
-    for conv in conversations:
-        text = _render_conversation(conv)
-        if not text.strip():
-            continue
-            
-        metadata = {
-            "title": conv.get('title', 'Untitled'),
-            "id": conv.get('id'),
-            "create_time": conv.get('create_time'),
-        }
-        
-        doc = Document(text=text, metadata=metadata)
-        documents.append(doc)
+    print(f"Found {len(conversations)} conversations to process.")
     
-    print(f"Created {len(documents)} documents. Indexing...")
+    # Configure Settings
+    Settings.embed_model = HuggingFaceEmbedding(model_name=EMBEDDING_MODEL)
+    Settings.llm = None
     
     storage_context = get_storage_context()
+    vector_store = storage_context.vector_store
     
-    # Initialize index (this will generate embeddings and store in PG)
-    VectorStoreIndex.from_documents(
-        documents,
-        storage_context=storage_context,
-        show_progress=True
-    )
+    # Get existing index or create new one from vector store
+    index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
+    
+    total_batches = (len(conversations) + batch_size - 1) // batch_size
+    
+    for i in range(0, len(conversations), batch_size):
+        batch = conversations[i : i + batch_size]
+        print(f"Processing batch {i // batch_size + 1}/{total_batches} ({len(batch)} conversations)...")
+        
+        documents = []
+        for conv in batch:
+            text = _render_conversation(conv)
+            if not text.strip():
+                continue
+                
+            metadata = {
+                "title": conv.get('title', 'Untitled'),
+                "id": conv.get('id'),
+                "create_time": conv.get('create_time'),
+            }
+            
+            doc = Document(text=text, metadata=metadata)
+            documents.append(doc)
+            
+        if documents:
+            # Insert documents into the index (this generates embeddings and persists)
+            # We use insert_nodes or refresh_ref_docs, but for simple ingestion:
+            for doc in documents:
+                index.insert(doc)
+                
     print("Ingestion complete.")

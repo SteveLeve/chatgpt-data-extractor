@@ -44,12 +44,28 @@ A local-first tool to ingest, store, and interact with your ChatGPT export data 
 ### Ingest Data
 Place your unzipped ChatGPT export in `source-data/` (or specify path).
 
+**Test with a small subset first:**
 ```bash
-python main.py ingest --input source-data
+python main.py ingest --input source-data --limit 10 --batch-size 5
+```
+
+**Ingest all data in batches:**
+```bash
+python main.py ingest --input source-data --batch-size 10
+```
+
+The batch processing approach allows you to:
+- Test the pipeline quickly with `--limit`
+- Process data incrementally (data is available immediately after each batch)
+- Resume ingestion if interrupted
+
+### Verify Retrieval (without LLM)
+```bash
+python verify_retrieval.py
 ```
 
 ### Chat (REPL)
-Start the interactive chat session.
+**Note:** Requires Ollama running with a model downloaded (e.g., `ollama pull llama3`)
 
 ```bash
 python main.py chat

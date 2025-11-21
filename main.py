@@ -11,6 +11,8 @@ def main():
     # Ingest Command
     ingest_parser = subparsers.add_parser('ingest', help='Ingest data into the RAG pipeline')
     ingest_parser.add_argument('--input', default='source-data', help='Path to source data')
+    ingest_parser.add_argument('--limit', type=int, default=None, help='Limit number of conversations to process')
+    ingest_parser.add_argument('--batch-size', type=int, default=10, help='Batch size for ingestion')
     
     # Chat Command
     chat_parser = subparsers.add_parser('chat', help='Start the chat REPL')
@@ -22,7 +24,7 @@ def main():
         if not input_path.exists():
             print(f"Error: Input directory '{input_path}' does not exist.")
             sys.exit(1)
-        ingest_data(input_path)
+        ingest_data(input_path, limit=args.limit, batch_size=args.batch_size)
         
     elif args.command == 'chat':
         start_repl()
