@@ -8,3 +8,6 @@ rich
 sqlalchemy
 asyncpg
 llama-index-llms-anthropic
+fastapi
+uvicorn
+python-multipart

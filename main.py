@@ -16,6 +16,9 @@ def main():
     
     # Chat Command
     chat_parser = subparsers.add_parser('chat', help='Start the chat REPL')
+
+    # Serve Command
+    serve_parser = subparsers.add_parser('serve', help='Start the web server')
     
     args = parser.parse_args()
     
@@ -33,6 +36,10 @@ def main():
             asyncio.run(start_repl_async())
         except KeyboardInterrupt:
             print("\nGoodbye!")
+
+    elif args.command == 'serve':
+        import uvicorn
+        uvicorn.run("web.app:app", host="0.0.0.0", port=8000, reload=True)
         
     else:
         parser.print_help()
