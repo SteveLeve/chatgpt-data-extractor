@@ -29,7 +29,10 @@ def main():
     elif args.command == 'chat':
         import asyncio
         from chat_rag.interface import start_repl_async
-        asyncio.run(start_repl_async())
+        try:
+            asyncio.run(start_repl_async())
+        except KeyboardInterrupt:
+            print("\nGoodbye!")
         
     else:
         parser.print_help()

@@ -11,6 +11,15 @@ async def start_repl_async():
     # Initialize agent once to maintain conversation history
     with console.status("[bold yellow]Initializing Agent...[/bold yellow]"):
         agent = setup_agent()
+        
+    # Set custom exception handler to suppress CancelledError noise from LlamaIndex instrumentation
+    import asyncio
+    loop = asyncio.get_running_loop()
+    def handler(loop, context):
+        if "exception" in context and isinstance(context["exception"], asyncio.CancelledError):
+            return
+        loop.default_exception_handler(context)
+    loop.set_exception_handler(handler)
     
     while True:
         try:
