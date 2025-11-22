@@ -6,7 +6,7 @@ This project is a RAG (Retrieval Augmented Generation) pipeline for personal Cha
 ## Tech Stack
 - **Language**: Python 3.10+
 - **Database**: PostgreSQL 16 with `pgvector` extension.
-- **RAG Framework**: LlamaIndex.
+- **RAG Framework**: LlamaIndex (Agentic RAG with Workflows).
 - **LLM**: Ollama (Local) or OpenAI (API).
 - **Embeddings**: HuggingFace `BAAI/bge-m3` (Local).
 - **CLI**: `argparse` + `rich`.

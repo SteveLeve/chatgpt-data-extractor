@@ -1,12 +1,16 @@
 from rich.console import Console
 from rich.markdown import Markdown
-from chat_rag.query import query
+from chat_rag.query import query_async, setup_agent
 
 console = Console()
 
-def start_repl():
+async def start_repl_async():
     console.print("[bold green]ChatGPT RAG Interface[/bold green]")
     console.print("Type 'exit' or 'quit' to stop.")
+    
+    # Initialize agent once to maintain conversation history
+    with console.status("[bold yellow]Initializing Agent...[/bold yellow]"):
+        agent = setup_agent()
     
     while True:
         try:
@@ -15,7 +19,8 @@ def start_repl():
                 break
             
             with console.status("[bold yellow]Thinking...[/bold yellow]"):
-                response = query(user_input)
+                # Pass the existing agent to preserve state
+                response = await query_async(user_input, agent=agent)
             
             console.print("[bold green]Assistant:[/bold green]")
             console.print(Markdown(str(response)))
@@ -25,3 +30,8 @@ def start_repl():
             break
         except Exception as e:
             console.print(f"[bold red]Error:[/bold red] {e}")
+
+def start_repl():
+    """Legacy sync wrapper if needed, but main.py should use async"""
+    import asyncio
+    asyncio.run(start_repl_async())

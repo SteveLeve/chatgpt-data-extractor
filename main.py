@@ -27,7 +27,9 @@ def main():
         ingest_data(input_path, limit=args.limit, batch_size=args.batch_size)
         
     elif args.command == 'chat':
-        start_repl()
+        import asyncio
+        from chat_rag.interface import start_repl_async
+        asyncio.run(start_repl_async())
         
     else:
         parser.print_help()

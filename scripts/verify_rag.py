@@ -1,5 +1,9 @@
-from chat_rag.query import query
 import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from llama_index.core import VectorStoreIndex, Settings
+from chat_rag.query import query
 
 def test_query():
     print("Testing RAG retrieval...")

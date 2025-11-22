@@ -9,6 +9,9 @@ A local-first tool to ingest, store, and interact with your ChatGPT export data 
 - **Vector Search**: Uses `pgvector` for semantic search over conversation history.
 - **Local RAG**: Runs entirely locally using Ollama (LLM) and HuggingFace (Embeddings), with support for external APIs.
 - **REPL Interface**: Interactive command-line interface for chatting with your data.
+- **Agentic RAG**: Uses a ReAct agent to intelligently search, filter, and retrieve full documents.
+- **Smart Search**: Can find conversations by topic, not just semantic similarity.
+- **Full Document Retrieval**: Can fetch the entire content of a conversation by ID.
 
 ## Prerequisites
 
@@ -84,7 +87,7 @@ The batch processing approach allows you to:
 
 ### Verify Retrieval (without LLM)
 ```bash
-python verify_retrieval.py
+python scripts/verify_retrieval.py
 ```
 
 ### Chat (REPL)
