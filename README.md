@@ -97,6 +97,31 @@ Start the interactive chat session. The system will use the provider configured 
 python main.py chat
 ```
 
+## Web Interface
+
+The project includes a modern React-based web interface for chatting and managing data.
+
+### 1. Build the Frontend
+The frontend needs to be built once before it can be served by the backend.
+
+```bash
+cd frontend
+npm install
+npm run build
+cd ..
+```
+
+### 2. Start the Server
+Start the FastAPI backend, which also serves the built frontend.
+
+```bash
+python main.py serve
+```
+
+### 3. Access the UI
+Open your browser and navigate to:
+[http://localhost:8000](http://localhost:8000)
+
 ## Architecture
 
 See [docs/architecture](docs/architecture) for details.

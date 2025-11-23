@@ -33,3 +33,9 @@ Goal: Improve search and exploration efficiency with thematic tags.
   - Extract thematic tags from documents and chunks.
 - **[Issue #8](https://github.com/SteveLeve/chatgpt-data-extractor/issues/8): Managed Tag Lookup Table**
   - Manage tags in a structured lookup table for efficiency.
+
+## 5. Optimization & Maintenance
+Goal: Ensure the system is efficient and avoids redundant work.
+
+- **[Issue #9](https://github.com/SteveLeve/chatgpt-data-extractor/issues/9): De-duplication & Content Refresh**
+  - Smartly handle bulk exports to avoid re-processing unchanged conversations.
