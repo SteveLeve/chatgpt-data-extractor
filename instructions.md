@@ -4,6 +4,11 @@ The `./source-data` directory contains a ChatGPT bulk export. These files are ha
 
 This document defines inputs, expected outputs, extraction rules, and acceptance criteria.
 
+> [!IMPORTANT]
+> **For Developers & Agents:**
+> Please refer to [docs/AGENTS.md](docs/AGENTS.md) for development guidelines, documentation standards (ADRs, Specs, Journal), and the project vision.
+> **Always document your intent before beginning code changes.**
+
 ## Inputs
 
 - `source-data/conversations.json` (preferred): Array of conversation objects with a `mapping` of message nodes.

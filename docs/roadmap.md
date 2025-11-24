@@ -39,3 +39,10 @@ Goal: Ensure the system is efficient and avoids redundant work.
 
 - **[Issue #9](https://github.com/SteveLeve/chatgpt-data-extractor/issues/9): De-duplication & Content Refresh**
   - Smartly handle bulk exports to avoid re-processing unchanged conversations.
+
+## 6. Education & Extensibility
+Goal: Make the project a learning tool and an extensible platform.
+
+- **Jupyter Notebooks for Walkthroughs**: Create a `notebooks/` folder with demonstrations of major features.
+- **MCP Service**: Expose the knowledge base as an MCP server for other tools.
+- **Public Template**: Prepare the repository to be used as a public template for others.

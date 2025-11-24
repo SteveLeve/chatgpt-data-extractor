@@ -1,6 +1,8 @@
 # ChatGPT Data Extractor & RAG Pipeline
 
-A local-first tool to ingest, store, and interact with your ChatGPT export data using RAG (Retrieval Augmented Generation).
+A local-first tool to ingest, store, and interact with your chat history and documents from multiple sources (ChatGPT, Claude, Gemini, etc.) using RAG (Retrieval Augmented Generation).
+
+**Goal:** Provide a self-contained and flexible environment for users to create their own knowledge bases from disparate sources.
 
 ## Features
 
