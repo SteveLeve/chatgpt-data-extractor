@@ -39,30 +39,36 @@ A running log of the development process, capturing the "stream of consciousness
 
 **Entries should include:**
 - **Date/Time**: When the entry was made.
-- **Objective**: What are we working on?
-- **Challenges**: What blocked us?
-- **Breakthroughs**: How did we solve it?
-- **Next Steps**: What did we leave for the next session?
+- **Context**: What are we working on?
+- **Intent**: (Before Code) What do we plan to do and why?
+- **Conclusion**: (After Code) What changed and how was it verified?
 
 ## Development Workflow
 
-1.  **Plan**:
+1.  **Define Intent (The "Pre-Commit")**:
+    - **Action**: Update `docs/JOURNAL.md`.
+    - **Content**: Define the "Intent", "Scope", and "Rationale" of the upcoming change.
+    - **Goal**: Signal to the team (and future self) what is about to happen *before* touching the code.
+
+2.  **Plan**:
     - Check `docs/roadmap.md` and `task.md`.
     - Create/Update a Specification or ADR if the task involves design decisions.
-    - Document your intent in `docs/JOURNAL.md`.
 
-2.  **Implement**:
+3.  **Implement**:
     - Write code that adheres to the `AGENTS.md` (root) technical conventions.
     - Keep changes atomic and focused.
 
-3.  **Verify**:
+4.  **Verify**:
     - Run tests.
     - Verify against the Specification.
-    - Update `docs/JOURNAL.md` with results.
 
-4.  **Document**:
+5.  **Conclude (The "Post-Commit")**:
+    - **Action**: Update `docs/JOURNAL.md`.
+    - **Content**: Summarize "Changes", "Verification Results", and "Next Steps".
+    - **Goal**: Close the loop on the cycle.
+
+6.  **Document**:
     - Update `README.md` if user-facing changes occurred.
-    - Update `docs/AGENTS.md` if developer processes changed.
 
 ## Project Vision: The Universal Knowledge Base
 

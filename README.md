@@ -99,6 +99,13 @@ Start the interactive chat session. The system will use the provider configured 
 python main.py chat
 ```
 
+### Reset Data
+To clear all ingested data and start fresh (WARNING: This is destructive):
+
+```bash
+python scripts/reset_data.py
+```
+
 ## Web Interface
 
 The project includes a modern React-based web interface for chatting and managing data.
