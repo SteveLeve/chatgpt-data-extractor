@@ -43,6 +43,16 @@ A running log of the development process, capturing the "stream of consciousness
 - **Intent**: (Before Code) What do we plan to do and why?
 - **Conclusion**: (After Code) What changed and how was it verified?
 
+### 4. Agent Context
+**Location:** `docs/agent_context/`
+
+To preserve the evolutionary narrative and context for AI agents, we maintain the following artifacts in version control:
+- `task.md`: The current master task list.
+- `implementation_plan.md`: The technical design for the active task.
+- `walkthrough.md`: Verification results for the most recent changes.
+
+Agents should read and update these files to maintain state across sessions.
+
 ## Development Workflow
 
 1.  **Define Intent (The "Pre-Commit")**:
